@@ -79,7 +79,7 @@ INSERT INTO books (title, author, available) VALUES
 ('Clean Code', 'Robert Martin', 1);´´
 
 ##Estrutura Do Projeto 
-
+ ```
 .
 ├── .git
 ├── node_modules
@@ -104,7 +104,7 @@ INSERT INTO books (title, author, available) VALUES
 ├── [ ] package-lock.json
 ├── [ ] package.json
 └── README.md
-
+```
 
 Tokens usados:
 
