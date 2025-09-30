@@ -1,28 +1,27 @@
+// books.js (routes)
 import express from "express";
-import {
-  ListarLivros,
-  pegar1Livro,
-  CriarLivro,
-  atualizarLivro,
-  deletarLivro,
-  pegarLivro,
-  devolverLivro,
+import { 
+  buscarTodosLivros, 
+  buscarLivroPorId, 
+  criarNovoLivro, 
+  modificarLivro, 
+  excluirLivro, 
+  emprestarLivro, 
+  devolverLivro 
 } from "../controller/books.js";
 
-import { auth } from "../middlewares/auth.js";
-import { isAdmin } from "../middlewares/admin.js";
+import { autenticar } from "../middlewares/auth.js";
+import { verificarAdmin } from "../middlewares/admin.js";
 
-const router = express.Router();
+const rotas = express.Router();
 
-// Usuário comum
-router.get("/", auth, ListarLivros);
-router.get("/:id", auth, pegar1Livro);
-router.post("/:id/borrow", auth, pegarLivro);
-router.post("/:id/return", auth, devolverLivro);
+rotas.get("/", autenticar, buscarTodosLivros);
+rotas.get("/:id", autenticar, buscarLivroPorId);
+rotas.post("/:id/borrow", autenticar, emprestarLivro);
+rotas.post("/:id/return", autenticar, devolverLivro);
 
-// Admin
-router.post("/", auth, isAdmin, CriarLivro);
-router.patch("/:id", auth, isAdmin, atualizarLivro);
-router.delete("/:id", auth, isAdmin, deletarLivro);
+rotas.post("/", autenticar, verificarAdmin, criarNovoLivro);
+rotas.patch("/:id", autenticar, verificarAdmin, modificarLivro);
+rotas.delete("/:id", autenticar, verificarAdmin, excluirLivro);
 
-export default router;
+export default rotas;

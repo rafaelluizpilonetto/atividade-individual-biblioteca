@@ -1,10 +1,9 @@
-// src/routes/auth.js
+
 import express from "express";
-import { register } from "../controller/user.js";
+import { criarUsuario } from "../controller/user.js";
 
-const router = express.Router();
+const roteador = express.Router();
 
-// Rota para registrar usuário
-router.post("/register", register);
+roteador.post("/register", criarUsuario);
 
-export default router;
+export default roteador;
